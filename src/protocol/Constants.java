@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client.view;
+package protocol;
 
 /**
  *
  * @author Bernardo
  */
-public enum Commands {
-    //connect to the server
-    CONNECT,
+public class Constants {
+    public static final String DELIMITER = "$$";
     
-    //quit the client
-    QUIT,
+    public static final int SCORE_INDEX = 1;
     
-    //invalid command
-    INVALID,
+    public static final int ATTEMPTS_INDEX = 2;
     
-    //start a game
-    START
+    public static final int WORD_INDEX = 0;
 }

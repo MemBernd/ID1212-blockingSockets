@@ -5,10 +5,24 @@
  */
 package server.controller;
 
+import server.model.GameState;
+
 /**
  *
  * @author Bernardo
  */
 public class Controller {
+    private GameState game = new GameState();
     
+    public String[] getGameState() {
+        return game.getbuiltState();
+    }
+    
+    public boolean attempt(char[] attempt) throws Exception {
+        return game.finishes(attempt);
+    }
+    
+    public void startGame() {
+        game.initializeGame();
+    }
 }

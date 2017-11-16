@@ -31,15 +31,16 @@ public class Interpreter extends Thread {
                         controller.connect(cmd.getArgument(0),
                                 Integer.parseInt(cmd.getArgument(1)), new ConsoleOutput());
                         break;
+                    case START:
+                        controller.start();
+                        break;
                     case QUIT:
                         exit = true;
                         controller.disconnect();
                         break;
-                    case INVALID:
-                        
-                        break;
                     default:
-                        
+                        System.out.println("Trying to send: " + cmd.getEnteredCommand());
+                        controller.sendAttempt(cmd.getEnteredCommand());
                     
                 }
             } catch (Exception e) {

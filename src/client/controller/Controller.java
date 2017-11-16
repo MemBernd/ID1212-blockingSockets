@@ -35,5 +35,13 @@ public class Controller {
     public void disconnect() throws IOException {
         conn.disconnect();
     }
+    
+    public void start() throws IOException{
+        conn.startGame();
+    }
+    
+    public void sendAttempt(String attempt) {
+        conn.sendAttempt(attempt);
+    }
 
 }

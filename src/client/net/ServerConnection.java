@@ -5,6 +5,7 @@
  */
 package client.net;
 
+import client.view.Commands;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +39,16 @@ public class ServerConnection {
         socket.close();
         socket = null;
         connected = false;
+    }
+    
+    public void startGame() throws IOException{
+        if (connected) {
+            printWriter.println(Commands.START);
+        }
+    }
+    
+    public void sendAttempt(String attempt) {
+        printWriter.println(attempt);
     }
     
     private class Listener implements Runnable {

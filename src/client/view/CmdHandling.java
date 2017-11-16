@@ -24,7 +24,7 @@ public class CmdHandling {
         return command;
     }
     
-    public String getEntederCommand() {
+    public String getEnteredCommand() {
         return enteredCommand;
     }
     
