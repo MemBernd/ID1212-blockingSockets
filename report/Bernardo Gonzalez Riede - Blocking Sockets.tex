@@ -47,6 +47,7 @@
     This is at least best practice, if not a requirement in all programs.
     \item The server should be able to handle several clients simulteanously.
     Every client has to have its own game which doesn't get affected by other players.
+    \item The user interface must be informative.
 \end{itemize}
 
 
@@ -64,9 +65,7 @@ Most importatn concepts obtained:
     Perfect for entering commands
     \item Observer pattern can be used to prevent upcalls from layers to layers above.
     \item (G)UI can be made responsive using an additional thread for commands with latency, i.e. network communication.
-    \item Stream reading can be layered, e.g. a _DataOutputStream_ over a _BufferedOutputStream_ over a _FileOutputStream_.
-    \item The user interface must be informative.
-\end{itemize}
+    \item Stream reading can be layered, e.g. a _DataOutputStream_ over a _BufferedOutputStream_ over a _FileOutputStream_.\end{itemize}
 
 
 \section{Method}
