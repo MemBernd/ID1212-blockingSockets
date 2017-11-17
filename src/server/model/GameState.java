@@ -5,9 +5,10 @@
  */
 package server.model;
 
+import java.io.IOException;
 import java.util.Arrays;
 import protocol.Constants;
-import server.FileHandling.FileReader;
+import server.FileHandling.FileHandler;
 
 /**
  *
@@ -70,7 +71,7 @@ public class GameState {
         state[Constants.WORD_INDEX] = Arrays.toString(word);
         return state;
     }
-    public void initializeGame() {
+    public void initializeGame() throws IOException {
         actualWord = getRandomWord().toCharArray();
         word = new char[actualWord.length];
         Arrays.fill(word, placeholder);
@@ -79,9 +80,11 @@ public class GameState {
     }
     
     
-    private String getRandomWord() {
-        FileReader file = new FileReader();
-        return "stub";
+    private String getRandomWord() throws IOException {
+        String word;
+        FileHandler file = new FileHandler();
+        word = file.getWord();
+        return word;
     }
     
     public boolean gameStarted() {

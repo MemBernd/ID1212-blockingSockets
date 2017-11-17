@@ -36,7 +36,9 @@ public class ServerConnection {
     }
     
     public void disconnect() throws IOException {
-        socket.close();
+        if (connected) {
+            socket.close();
+        }
         socket = null;
         connected = false;
     }
