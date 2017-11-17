@@ -24,6 +24,11 @@ public class Interpreter extends Thread {
     
     @Override
     public void run() {
+        put.println("commands: " +
+                "\nconnect to server: connect <host> <port(default 54321)>" +
+                "\nstart a game: start" +
+                "\nquit the program: quit" +
+                "\ncommunicate with game: <one_letter> OR <complete_word>");
         while (!exit) {
             try {
                 CmdHandling cmd = new CmdHandling(readLine());
