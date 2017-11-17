@@ -7,7 +7,9 @@ package client.view;
 
 import client.controller.Controller;
 import client.net.OutputHandler;
+import java.io.UncheckedIOException;
 import java.util.Scanner;
+import protocol.Constants;
 
 /**
  *
@@ -39,13 +41,13 @@ public class Interpreter extends Thread {
                         controller.disconnect();
                         break;
                     default:
-                        System.out.println("Trying to send: " + cmd.getEnteredCommand());
+                        //System.out.println("Trying to send: " + cmd.getEnteredCommand());
                         controller.sendAttempt(cmd.getEnteredCommand());
                     
                 }
-            } catch (Exception e) {
+            }  catch (Exception e) {
                 put.println("Problem with operation");
-            }
+            } 
         }
     }
     
@@ -57,7 +59,11 @@ public class Interpreter extends Thread {
     private class ConsoleOutput implements OutputHandler {
         @Override
         public void printMessage (String output) {
-            put.println(output);
+            String[] message = output.split(Constants.DELIMITER);
+            for (String element : message) {
+                put.println(element);
+            }
+            //put.println(output);
             put.print(PROMPT);
         }
     }

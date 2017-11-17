@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.io.UncheckedIOException;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.StringJoiner;
 import protocol.Constants;
 import server.controller.Controller;
 
@@ -42,7 +43,8 @@ public class Handler extends Thread {
         while(!exit) {
             try {
                 String[] message = reader.readLine().split(Constants.DELIMITER);
-                System.out.println(message[0]);
+                String reply = "--------------------" + Constants.NEW_LINE;
+                //System.out.println(message[0]);
                 switch (message[0]) {
                     case "QUIT":
                         disconnect();
@@ -50,18 +52,42 @@ public class Handler extends Thread {
                         break;
                     case "START":
                         controller.startGame();
+                        reply += "Game started:" + Constants.NEW_LINE;
+                        writer.println(reply + stateToString());
                         break;
                     default:
-                        controller.attempt(message[0].toCharArray());
-                        System.out.println(Arrays.toString(controller.getGameState()));
+                        if (controller.gameStarted()) {
+                            try {
+                                if(controller.attempt(message[0].toCharArray())) {
+                                    reply += "Game finished as followed:" + Constants.NEW_LINE;
+                                }
+                                reply += stateToString();
+                            } catch (Exception e) {
+                                reply += "Incorrect amount of characters.";
+                            }
+
+                        } else {
+                            reply += "Game hasn't started yet.";
+                        }
+                        
+                        writer.println(reply);
                 }
             } catch(Exception e) {
-                e.printStackTrace();
-                System.err.println("Error in clienthandler run");
+                //e.printStackTrace();
+                System.err.println("Error in clienthandler run, aborting.");
                 exit = true;
             }
             
         }
+    }
+    
+    private String stateToString() {
+        StringJoiner joinedMessage = new StringJoiner(Constants.NEW_LINE);
+        String[]state = controller.getGameState();
+        for (String element : state) {
+            joinedMessage.add(element);
+        }
+        return joinedMessage.toString();
     }
     
     private void disconnect() {

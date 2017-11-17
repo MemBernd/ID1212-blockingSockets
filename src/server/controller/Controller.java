@@ -25,4 +25,8 @@ public class Controller {
     public void startGame() {
         game.initializeGame();
     }
+    
+    public boolean gameStarted() {
+        return game.gameStarted();
+    }
 }

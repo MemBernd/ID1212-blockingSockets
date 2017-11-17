@@ -12,9 +12,11 @@ package protocol;
 public class Constants {
     public static final String DELIMITER = "$$";
     
-    public static final int SCORE_INDEX = 1;
+    public static final int SCORE_INDEX = 0;
     
-    public static final int ATTEMPTS_INDEX = 2;
+    public static final int ATTEMPTS_INDEX = 1;
     
-    public static final int WORD_INDEX = 0;
+    public static final int WORD_INDEX = 2;
+    
+    public static final String NEW_LINE = "\n";
 }
