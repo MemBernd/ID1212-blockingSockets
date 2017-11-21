@@ -5,6 +5,7 @@
  */
 package server.controller;
 
+import java.io.IOException;
 import server.model.GameState;
 
 /**
@@ -22,7 +23,7 @@ public class Controller {
         return game.finishes(attempt);
     }
     
-    public void startGame() {
+    public void startGame() throws IOException {
         game.initializeGame();
     }
     

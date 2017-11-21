@@ -37,11 +37,11 @@ public class Controller {
     }
     
     public void start() throws IOException{
-        conn.startGame();
+        CompletableFuture.runAsync(() -> conn.startGame());
     }
     
-    public void sendAttempt(String attempt) {
-        conn.sendAttempt(attempt);
+    public void sendAttempt(String attempt) throws InterruptedException {
+        CompletableFuture.runAsync(() -> conn.sendAttempt(attempt));
     }
 
 }
